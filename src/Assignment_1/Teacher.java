@@ -1,4 +1,4 @@
-package Java;
+package Assignment_1;
 
 public class Teacher extends Person {
 
