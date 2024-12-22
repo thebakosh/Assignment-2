@@ -1,10 +1,10 @@
 package Java;
 
 public class Person {
-    private String name;
-    private String surname;
-    private int age;
-    private boolean gender;
+    public String name;
+    public String surname;
+    public int age;
+    public boolean gender;
 
 
 
