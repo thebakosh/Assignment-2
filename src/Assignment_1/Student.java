@@ -1,5 +1,8 @@
 package Assignment_1;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +33,29 @@ public class Student extends Person {
         return (double) sum / grades.size();
     }
 
+
+    public static List<Student> readStudentsFromFile(String filename) {
+        List<Student> students = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(" ");
+                String name = parts[0];
+                String surname = parts[1];
+                int age = Integer.parseInt(parts[2]);
+                boolean gender = parts[3].equalsIgnoreCase("Male");
+
+                Student student = new Student(name, surname, age, gender);
+                for (int i = 4; i < parts.length; i++) {
+                    student.addGrade(Integer.parseInt(parts[i]));
+                }
+                students.add(student);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return students;
+    }
 
     @Override
     public String toString() {
